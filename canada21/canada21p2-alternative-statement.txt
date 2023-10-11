@@ -1,0 +1,63 @@
+Darcy is a grade 9 student at Pierre Elliott Trudeau High School. He will probably get the infamous Turing assignment from his computer science class in grade 10.
+
+In the infamous Turing assignment, you have to pick a random comic strip from the Internet and replicate the image as closely as possible in the Turing language. However, there is a loophole that Darcy can use to his advantage.
+
+The `drawdot` command changes the colour of a single pixel in the output screen. This command needs the ~x~ coordinate, ~y~ coordinate, and the colour ID, respectively. These three variables are integers. If a point at ~(1,3)~ needs to have the colour ID ~6~, the command `drawdot (1, 3, 6);` should be used. **The spaces must be included since proper indentation is important**.
+
+Colours in Turing are handled in this way:
+
+ - There are ~N~ default colours, and each colour has an ID between ~0~ to ~N-1~ (inclusive).
+ - Each default colour is defined by the triplet ~(a,b,c)~. Each number in the triplet is an integer from ~0~ to ~255~.
+ - The distance from the colour ~(A,B,C)~ to the colour ~(a,b,c)~ is ~|A-a| + |B-b| + |C-c|~. (Note: ~|x|~ is the absolute value of ~x~, which is the *positive* distance between ~x~ and ~0~)
+
+When using the `drawdot` command, it is important to match the colours as closely as possible! If there are two equally close colours, the colour with the lower ID should be used.
+
+Darcy has chosen a comic with dimensions ~X~ and ~Y~. Can you generate a Turing program that will draw the comic?
+
+##Constraints
+
+~1 \le N \le 256~
+
+~1 \le X \le 480~
+
+~1 \le Y \le 360~
+
+All ~x~ coordinates satisfy ~0 \le x < X~. All ~y~ coordinates satisfy ~0 \le y < Y~.
+
+In every colour triplet, each number is an integer in the range ~0~ to ~255~ (inclusive).
+
+##Input Specification
+
+The first line of input will contain the integer ~N~.
+
+On the next ~N~ lines, the ~i^{th}~ line will contain ~a_{i-1}~, ~b_{i-1}~, and ~c_{i-1}~, which is the triplet for the default colour with ID ~i-1~.
+
+The next line contains ~X~ and ~Y~, the dimensions of the comic that Darcy has chosen.
+
+The next ~X \times Y~ lines will contain ~5~ integers. The first ~2~ integers are the ~x~ and ~y~ coordinates of the pixel, respectively. The last ~3~ integers form a triplet ~(A,B,C)~, which is the colour of the pixel in the comic.
+
+##Output Specification
+
+Output ~X \times Y~ lines, the commands in a Turing program that will replicate the comic as closely as possible. Each command should be on a new line. The commands can be given in any order. **Remember to print the commands in the proper format**.
+
+##Sample Input
+
+    2
+    100 100 0
+    200 200 0
+    2 3
+    0 0 100 100 0
+    0 1 200 200 0
+    0 2 250 101 100
+    1 2 149 150 0
+    1 0 150 150 255
+    1 1 151 150 255
+
+##Sample Output
+
+    drawdot (0, 0, 0);
+    drawdot (0, 1, 1);
+    drawdot (0, 2, 1);
+    drawdot (1, 2, 0);
+    drawdot (1, 0, 0);
+    drawdot (1, 1, 1);
